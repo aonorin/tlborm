@@ -1,4 +1,4 @@
-% Парсинг Enum 
+% Разбор Enum 
  
 ```rust
 macro_rules! parse_unitary_variants {
@@ -48,12 +48,13 @@ macro_rules! parse_unitary_variants {
         }
     };
 
-    // Отмена варианта с полезной нагрузкой (payload) 
+    // Ошибка при получении варианта с полезной нагрузкой (payload) 
     (
         @collect_unitary_variants $fixed:tt,
         ($var:ident $_struct:tt, $($tail:tt)*) -> ($($var_names:tt)*)
     ) => {
-        const _error: () = "cannot parse unitary variants from enum with non-unitary variants";
+        const _error: () = "cannot parse unitary variants from enum with 
+        non-unitary variants";
     };
     
     // Правило входа.
@@ -76,10 +77,16 @@ macro_rules! parse_unitary_variants {
 # }
 ```
 
-Этот макрос показывает, как вы можете использовать [incremental tt muncher] и [push-down accumulation] для парсинга вариантов `enum` , в котором все варианты унитарны (*т.e.* не имеют полезной нагрузки (payload)).  После завершения, `parse_unitary_variants!` вызывает макрос [callback] со списком вариантов (плюс поддерживает любые другие произвольные аргументы).
+Этот макрос показывает, как вы можете использовать [incremental-tt-munchers] и
+[push-down-accumulation] для разбора вариантов `enum` , содержащего только
+унитарные варианты (*т.e.* не имеющие полезной нагрузки (payload)).  После
+завершения `parse_unitary_variants!` вызывает [callbacks] со списком вариантов
+(плюс присутствует поддержка других произвольных аргументов).
 
-Его можно изменить, чтобы также парсить поля  `struct` , вычислять дополнительные значения для вариантов, или даже выделять имена  *всех* вариантов в произвольный  `enum`.
+Его можно изменить так, что можно было бы разбирать поля `struct`, вычислять
+дополнительные значения для вариантов `enum` или даже выносить имена *всех*
+вариантов в произвольный `enum`.
 
-[incremental tt muncher]: pat-incremental-tt-munchers.html
-[push-down accumulation]: pat-push-down-accumulation.html
-[callback]: pat-callbacks.html
+[incremental-tt-munchers]: pat-incremental-tt-munchers.html
+[push-down-accumulation]: pat-push-down-accumulation.html
+[callbacks]: pat-callbacks.html

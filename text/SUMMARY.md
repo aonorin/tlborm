@@ -1,4 +1,4 @@
-# Резюме
+# Содержание
 
 * [Макросы, методическое введение](mbe-README.md)
     * [Расширения синтаксиса](mbe-syn-README.md)
@@ -25,7 +25,7 @@
     * [Видимость](pat-visibility.md)
     * [Предварительно](pat-provisional.md)
 * [Строительные блоки](blk-README.md)
-    * [AST Преобразования](blk-ast-coercion.md)
+    * [Приведение к AST](blk-ast-coercion.md)
     * [Подсчет](blk-counting.md)
     * [Разбор Enum ](blk-enum-parsing.md)
 * [Примеры с аннотацией](aeg-README.md)
